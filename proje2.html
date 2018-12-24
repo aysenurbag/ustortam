@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+  //Boş olmayan input
+  var x = document.querySelector("#name").value;
+  if (x == "") {
+    document.getElementById("name_error").innerHTML = "<span style = 'color:red;';> Name Must Be Filled Out</span>";
+    return false;
+  }
+  ///E-mail kısıtlarına uyan input
+  var e  = document.querySelector("#email").value;
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+   if(e.match(mailformat) && e!=""){
+    
+  }
+  else{
+    document.getElementById("email_error").innerHTML = "<span style = 'color:red;';> Please correct e mail</span>";
+    return false;
+  }
+//Sadece sayılardan oluşan input
+  var digit  = document.querySelector("#sayisal").value;
+
+  var numbers = /^[0-9]+$/;
+      if(digit.match(numbers) && digit!=""){
+    
+  }
+  else{
+    document.getElementById("digit_error").innerHTML = "<span style = 'color:red;';> Please only digit</span>";
+    return false;
+  }
+
+  //12 basamaklı ve sadece sayı olan input
+  var digit12  = document.querySelector("#basamakli").value;
+  var mnlen = 12;
+  var numbers = /^[0-9]+$/;
+ 
+
+    if(digit12.length==mnlen && digit12.match(numbers) && digit12!="" ){
+   
+  }
+  else{
+    document.getElementById("digit_error12").innerHTML = "<span style = 'color:red;';> Please 12 digit</span>";
+    return false;
+  }
+
+//Sadece harf (a..z veya A..Z) den oluşan input
+var alfa = document.querySelector("#alfa").value;
+var letters = /^[A-Za-z]+$/;
+   if(alfa.match(letters) && alfa!=""){
+    
+  }
+  else{
+    document.getElementById("alfa_error").innerHTML = "<span style = 'color:red;';> Sadece harf giriniz</span>";
+    return false;
+  }
+
+//Sadece harf ve en fazla 30 uzunlukta olan input
+var string30 = document.querySelector("#max30").value;
+var maxlen=30;
+var letters = /^[A-Za-z]+$/;
+   if(string30.match(letters) && string30.length<=maxlen && string30!= ""){
+    
+  }
+  else{
+    document.getElementById("max30_error").innerHTML = "<span style = 'color:red;';>Sadece harf ve en fazla 30 uzunlukta olan string giriniz </span>";
+    return false;
+  }
+
+//Üç kelimeden oluşan input
+var uckelime = document.querySelector("#uckelime").value;
+
+   if (uckelime!="")
+    {
+       var uckelimeArray = new Array();
+       uckelimeArray = uckelime.split(" ");
+
+       if(uckelimeArray.length == 3){  
+       }
+       else{
+    document.getElementById("uckelime_error").innerHTML = "<span style = 'color:red;';>3 kelimeden oluşan bir input girin </span>";
+    return false;
+       }
+    }
+//En az 1 büyük harf, en az 1 küçük harf, en az bir rakam ve en az 1 noktalama işareti içeren ve en az 8 uzunluğunda olan metin:
+var password = document.querySelector("#password").value;
+var passw =/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+
+if(password.match(passw)  ){
+    
+  }
+  else{
+    document.getElementById("password_error").innerHTML = "<span style = 'color:red;';>Uygun password giriniz </span>";
+    return false;
+  }
+
+}
+</script>
+</head>
+<body>
+
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+  Aşağıdaki hiçbir input boş olmamalı: <br>
+  
+
+  <table style="width:90%">
+    
+  <tr>
+    <td>Boş olmamalı: </td>
+    <td><input type="text" id="name"></td>
+    <td id="name_error"></td>
+    
+  </tr>
+  <tr>
+    <td>E-mail (Kurallara uygun email): </td>
+    <td><input type="text" id="email"></td>
+    <td id="email_error"></td>
+    
+  </tr>
+  <tr>
+    <td>Sadece sayısal: </td>
+    <td><input type="text" id="sayisal"></td>
+    <td id="digit_error"></td>
+    
+  </tr>
+  <tr>
+    <td>Sadece sayısal olan ve 12 basamak uzunluğundaki sayi: </td>
+    <td><input type="text" id="basamakli"></td>
+    <td id="digit_error12"></td>
+  </tr>
+  <tr>
+    <td>Sadece harf (a..z veya A..Z): </td>
+    <td><input type="text" id="alfa"></td>
+    <td id="alfa_error"></td>
+  </tr>
+  <tr>
+    <td>Sadece harf ve en fazla 30 uzunlukta olan string: </td>
+    <td><input type="text" id="max30"></td>
+    <td id="max30_error"></td>
+  </tr>
+  <tr>
+    <td>3 kelimeden oluşan string: </td>
+    <td><input type="text" id="uckelime"></td>
+    <td id="uckelime_error"></td>
+  </tr>
+  <tr>
+    <td>En az 1 büyük harf, en az 1 küçük harf, en az bir rakam ve en az 1 noktalama işareti içeren ve en az 8 uzunluğunda olan metin: </td>
+    <td><input type="text" id="password"></td>
+    <td id="password_error"></td>
+  </tr>
+  
+
+</table>
+
+<br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
